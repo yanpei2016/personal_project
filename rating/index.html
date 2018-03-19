@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>星级评分</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<ul class="rating" id="rating">
+    <li class="rating-item" title="很不好"></li>
+    <li class="rating-item" title="不好"></li>
+    <li class="rating-item" title="一般"></li>
+    <li class="rating-item" title="好"></li>
+    <li class="rating-item" title="很好"></li>
+</ul>
+<ul class="rating" id="rating1">
+    <li class="rating-item" title="很不好"></li>
+    <li class="rating-item" title="不好"></li>
+    <li class="rating-item" title="一般"></li>
+    <li class="rating-item" title="好"></li>
+    <li class="rating-item" title="很好"></li>
+</ul>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="dist/index1.js"></script>
+<script>
+    new Rating('#rating',{
+        mode: 'half', // 表示可以点亮半颗
+        num: 3,
+        readOnly: false
+    });
+
+    new Rating('#rating1',{
+        mode:'dasdasdas',
+        num: 2,
+        readOnly: false
+    })
+</script>
+</body>
+</html>

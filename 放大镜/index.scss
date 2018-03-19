@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.demo {
+    font-size: 0;
+    margin:100px 0 0  200px;
+    position: relative;
+
+
+    .small {
+        float: left;
+        position: relative;
+        border:1px solid #ddd;
+        vertical-align: top;
+        margin-right: 50px;
+        .mask {
+            position: absolute;
+            width: 300px;
+            height:300px;
+            top:0;
+            left: 0;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            background-color: rgb(255,255,255);
+            opacity: 0;
+            cursor: move;
+            z-index: 2;
+        }
+        .tag {
+            display: none;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;;
+            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+            opacity: .5;
+            cursor: move;
+        }
+    }
+
+    .big {
+        display: none;
+        position: relative;
+        float: left;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        border:1px solid #ddd;
+        vertical-align: top;
+        img {
+            position: absolute;
+        }
+    }
+}
