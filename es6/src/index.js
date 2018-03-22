@@ -13,8 +13,8 @@
 * 3.字符串
 * */
 {
-    let [a, b, c = 'default'] = [1, 3];
-    console.log(a + b + c)
+	let [a, b, c = 'default'] = [1, 3];
+	console.log(a + b + c)
 }
 
 /*
@@ -25,8 +25,8 @@
 
 {
 
-    let arr = [1, 2, 3, 4];
-    console.log(...arr);
+	let arr = [1, 2, 3, 4];
+	console.log(...arr);
 }
 
 
@@ -35,9 +35,9 @@
 * */
 
 {
-    let a = 3,
-        b = 5;
-    console.log(`${a + b}`)
+	let a = 3,
+		b = 5;
+	console.log(`${a + b}`)
 }
 
 /*
@@ -45,12 +45,12 @@
 * */
 
 {
-    let s = '你好',
-        str = '我是技术小白，你好';
-    console.log(str.indexOf(s))
-    console.log(str.includes(s))
-    console.log(str.startsWith(s))
-    console.log(str.endsWith(s))
+	let s = '你好',
+		str = '我是技术小白，你好';
+	console.log(str.indexOf(s))
+	console.log(str.includes(s))
+	console.log(str.startsWith(s))
+	console.log(str.endsWith(s))
 }
 
 /*
@@ -58,7 +58,7 @@
 * */
 
 {
-    console.log('abc'.repeat(3))
+	console.log('abc'.repeat(3))
 }
 
 /*
@@ -76,10 +76,10 @@
 * */
 
 {
-    console.log(Number.isFinite('3213123'))
-    console.log(Number.isInteger(121))
-    console.log(Number.parseInt(121.9))
-    console.log(Number.parseFloat(121))
+	console.log(Number.isFinite('3213123'))
+	console.log(Number.isInteger(121))
+	console.log(Number.parseInt(121.9))
+	console.log(Number.parseFloat(121))
 }
 
 /*
@@ -99,44 +99,58 @@
 *
 *       arr.keys()  数组的指针
 *       arr.entries()  包含数组的val和指针index
+*       entries()实例方发生成的是Iterator形式的数组，
+*       那这种形式的好处就是可以让我们在需要时用next()手动跳转到下一个值
 *
 * */
 
 {
-    let json = {
-            '0': '数据1',
-            '1': '数据2',
-            '2': '数据3',
-            length: 3
-        },
-        arr = [1, 2, 3, 4, 5, 6, 7, 8],
-        a;
-    a = Array.from(json);
-    console.log(a);
-    console.log(Array.of(1, 2, 3, 45, 65, 3, 2));
-    console.log(Array.of('dasd', 212, 23, 'dasdasd'));
-    // let arr = [1,2,3,4,5,6];
-    // for(let i of arr) {
-    //     console.log(i)
-    // };
-    // arr.forEach(function (i) {
-    //     console.log(i)
-    // })
-    console.log(Array.from(JSON.parse(JSON.stringify(json))));
+	let json = {
+			'0': '数据1',
+			'1': '数据2',
+			'2': '数据3',
+			length: 3
+		},
+		arr = [1, 2, 3, 4, 5, 6, 7, 8],
+		a;
+	a = Array.from(json);
+	console.log(a);
+	console.log(Array.of(1, 2, 3, 45, 65, 3, 2));
+	console.log(Array.of('dasd', 212, 23, 'dasdasd'));
+	// let arr = [1,2,3,4,5,6];
+	// for(let i of arr) {
+	//     console.log(i)
+	// };
+	// arr.forEach(function (i) {
+	//     console.log(i)
+	// })
+	console.log(Array.from(JSON.parse(JSON.stringify(json))));
 
-    arr.find(function (value, index, arr) {
-        if (value > 5) {
-            console.log(value)
-        }
-    });
+	arr.find(function (value, index, arr) {
+		if (value > 5) {
+			console.log(value + 'sss')
+		}
+	});
 
-    arr.fill('填充的元素', 3, 5);
-    console.log(arr);
-    let _entries = arr.entries();
-    console.log(_entries);
-    for (let [_index, _val] of arr.entries()) {
-        console.log(_index + ',' + _val)
-    }
+
+	arr.fill('填充的元素', 3, 5);
+	console.log(arr);
+	let _entries = arr.entries();
+
+	console.log(_entries);
+	console.log(_entries.next().value)
+	console.log(_entries.next().value)
+	console.log(_entries.next().value)
+	console.log(_entries.next().value)
+	console.log(_entries.next().value)
+
+	for (let [_index, _val] of arr.entries()) {
+		console.log(_index + ',' + _val)
+	}
+	for (let index of arr.keys()) {
+		console.log(index + 'index')
+
+	}
 }
 
 
@@ -151,23 +165,23 @@
 * */
 
 {
-    function result(a, b) {
-        if (a == 0) {
-            throw new Error('输入有误')
-        }
-        return a + b
-    }
+	function result(a, b) {
+		if (a == 0) {
+			throw new Error('输入有误')
+		}
+		return a + b
+	}
 
-    console.log(result(2));
-    console.log(result.length);
+	console.log(result(2));
+	console.log(result.length);
 
-    // 最简单的箭头函数
-    (a, b) => a + b;
+	// 最简单的箭头函数
+	(a, b) => a + b;
 
-    //===>
-    (a, b) => {
-        return a + b
-    }
+	//===>
+	(a, b) => {
+		return a + b
+	}
 }
 
 
@@ -176,16 +190,16 @@
 * */
 
 {
-    let json = {
-        a: 'JSshang',
-        b: '技术殇'
-    };
+	let json = {
+		a: 'JSshang',
+		b: '技术殇'
+	};
 
-    function Date({a, b = '默认值'}) {
-        console.log(a + ',' + b)
-    };
+	function Date({a, b = '默认值'}) {
+		console.log(a + ',' + b)
+	};
 
-    Date(json)
+	Date(json)
 }
 
 /*
@@ -193,18 +207,18 @@
 * */
 
 {
-    let arr = ['参数1', '参数2', '参数3'];
+	let arr = ['参数1', '参数2', '参数3'];
 
-    function nihao(a, b, c) {
+	function nihao(a, b, c) {
 
-        console.log(a)
-        console.log(b)
-        console.log(c)
-        return a + ',' + b + ',' + c
+		console.log(a)
+		console.log(b)
+		console.log(c)
+		return a + ',' + b + ',' + c
 
-    }
+	}
 
-    nihao(...arr)
+	nihao(...arr)
 }
 
 
@@ -214,15 +228,15 @@
 * */
 
 {
-    let arr = [1, 2, 3, 4, 5, 6];
-    console.log(3 in arr);
+	let arr = [1, 2, 3, 4, 5, 6];
+	console.log(3 in arr);
 
-    let arr1 = [, , , , , ,];
-    console.log(arr1.length);
+	let arr1 = [, , , , , ,];
+	console.log(arr1.length);
 
-    // 这里的0指的是数组下标位置是否为空。
-    console.log(0 in arr1)
-    console.log(0 in arr)
+	// 这里的0指的是数组下标为0的位置是否有值。
+	console.log(0 in arr1)
+	console.log(0 in arr)
 }
 
 
@@ -230,7 +244,7 @@
 * 数组的遍历方法
 *   1. forEach(val, index)
 *   2. filter() 过滤  也有循环的作用 循环整个数组
-*       定义过滤函数  可返回满足过滤条件的额数组
+*       定义过滤函数  可返回满足过滤条件的数组
 *
 *   3. some() 过滤  循环整个数组
 *       注意：如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
@@ -240,30 +254,289 @@
  * */
 
 {
-    let arr = [3, 4, 2, 5, 7, 83, 2, 4, 6, 5];
-    arr.forEach((val, index) => {
-        console.log(index + ': ' + val)
-    })
-    let yp = [],
-        YP = [];
-    let arrResult = arr.filter(i => {
-        return i > 5
-    })
+	let arr = [3, 4, 2, 5, 7, 83, 2, 4, 6, 5];
+	arr.forEach((val, index) => {
+		console.log(index + ': ' + val)
+	})
+	let yp = [],
+		YP = [];
+	let arrResult = arr.filter((i) => i > 5)
 
-    console.log(arrResult)
+	console.log(arrResult)
 
-    let result2 = arr.some(i => {
-        return i > 100
-    });
+	let result2 = arr.some(i => {
+		return i > 100
+	});
 
-    console.log(result2)
+	console.log(result2)
 
-    let resutl = arr.map((x, y) => x + y);
-    console.log(resutl)
+	let resutl = arr.map((x, y) => x + y);
+	console.log(resutl)
 }
 
 
 /*
 * 数组转换字符串
 *
+*   1.join(); 可以自定义连接模式
+*   2.toString() 默认只能是逗号连接
+*
 * */
+
+{
+	let arr = [1, 2, 3, 45, 6, 3],
+		_str = arr.join('|'),
+		_str1 = arr.toString();
+	console.log(_str)
+	console.log(_str1)
+}
+
+/*
+* 对象方法
+*   1. 允许将声明的变量  直接复制给对象  对象赋值
+*   2. 对象key构建
+*   3. 匿名函数赋值
+*   4. Object.is() 对象比较
+*   	与 === 的区别
+*   	===为同值相等，is()为严格相等
+*   5. Object.assign() 合并对象
+* */
+
+{
+	let a = 1,
+		b = 2;
+	let obj = {a, b};
+	console.log(obj);
+
+
+	let key = 'skill',
+		obj1 = {
+			[key]: 'key'
+		};
+	console.log(obj1);
+
+	let obj2 = {
+		add: (a, b) => a + b
+	};
+	console.log(obj2.add(1, 3));
+
+	console.log(+0 === -0);  //true
+	console.log(NaN === NaN); //false
+	console.log(Object.is(+0, -0)); //false
+	console.log(Object.is(NaN, NaN)); //true
+
+	let _a = {a: 'jishu'},
+		_b = {b: '技术'},
+		_c = {c: '殇'};
+	let _d = Object.assign(_a, _b, _c);
+	console.log(_d)
+}
+
+/*
+* Symbol 是一种原始数据类型
+*   1. 声明
+*   	let g = Symbol('iColor');
+*   	Symbol 值通过Symbol函数生成
+*   2. Symbol函数前不能使用new命令
+*   3. 凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
+*   4. Symbol对象元素的保护作用
+	   在对象中有很多值，但是循环输出时，并不希望全部输出，那我们就可以使用Symbol进行保护。
+*
+* */
+
+{
+	let g = Symbol();
+	console.log(g)
+	console.log(g.toString());
+
+	let key = Symbol('key'),
+		obj = {
+			key: '你好',
+			[key]: '技术'
+		};
+
+	console.log(obj[key]);
+	console.log(obj.key);
+	console.log(obj);
+
+	let person = {
+			sex: 'man',
+			name: 'jon',
+			age: 12
+		},
+		Marry = Symbol('marry');
+	person[Marry] = true
+
+	// Marry  属性不会被循环显示出来！！！！
+	console.log(person);
+	for (let i in person) {
+		console.log(person[i])
+	}
+}
+
+/*
+* 	Set  和 WeakSet 数据结构
+*		相对来说  使用set  更多
+* 	1. Set数据结构是以数组的形式构建的
+* 		Set 数据结构内部不允许出现重复的数据    去重
+* 	2. 增 add 删 delete 查 has  清空 clear
+*   3. 循环
+*   	for...of..
+*   	forEach()
+*   4. size  获取set值的个数
+* */
+
+{
+	let set = new Set([1, 2, 3, 5, 32, 2, 4, 45, 6, 76, 3, 2, 1, 3, 5, 6, 4, 2]),
+		arr = [];
+	set.add('jishushang');
+	set.delete(1);
+	// set.clear();
+	console.log(set)
+	console.log(set.has(1));
+	console.log(set.has(2));
+
+	for (let i of set) {
+		arr.push(i)
+	}
+	console.log(arr);
+	console.log(set.size);
+
+	set.forEach((i) => console.log(i))
+}
+
+/*
+* WeakSet
+*
+* 	1. 声明
+*  		let g = new WeakSet();
+*  	new 关键字声明  不能传递参数
+*  	2. 也不允许重复值出现
+* */
+
+{
+	let g = new WeakSet();
+	let obj = {
+		a: 'jishu',
+		b: '技术',
+		c: '殇'
+	};
+	g.add(obj);
+	console.log(g)
+}
+
+{
+	let weakObj = new WeakSet();
+	let obj = {a: 'jspang', b: '技术胖'}
+	let obj1 = obj;
+
+	weakObj.add(obj);
+	weakObj.add(obj1);
+
+	console.log(weakObj);
+}
+
+/*
+* Map
+*
+* 1. 设置值 .set(key, value)
+* 2. 获取值  .get(key)
+* 3. 删 .delete()
+* 4. .size 属性  返回map的值的个数
+* 5. has()  查找是否有某个元素
+* 6. .clear()  清除所有的元素
+* */
+
+{
+	let json = {
+			a: 'jishu',
+			b: '技术',
+			c: '技术殇'
+		},
+		map = new Map(),
+		map1 = new Map();
+	map.set('json', json);
+	map1.set(json, 'json');
+	map1.delete(json);
+	console.log(map);
+	console.log(map1);
+	console.log(map1.get(json));
+	console.log(map.get('json'));
+	console.log(map.size);
+	console.log(map1.size);
+}
+
+/*
+* Proxy  预处理
+* Proxy 可以理解成，在目标对象之前架设一层“拦截”，
+* 外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，
+* 可以对外界的访问进行过滤和改写。
+* Proxy 这个词的原意是代理，
+* 用在这里表示由它来“代理”某些操作，可以译为“代理器”。
+*
+*
+* 1、声明
+* 	new Proxy（{},{}）;
+* 	第一个花括号就相当于我们方法的主体，
+* 	后边的花括号就是Proxy代理处理区域
+*
+* 	代理区域函数：
+* 		get : 	target：得到的目标值
+				key：目标的key值，相当于对象的属性
+				property：这个不太常用，
+
+		set :	target:目标值。
+				key：目标的Key值。
+				value：要改变的值。
+				receiver：改变前的原始值。
+*
+*
+* */
+
+{
+	var pro = new Proxy({
+		add: function (val) {
+			return val + 10;
+		},
+		name: 'I am Jspang'
+	}, {
+		get: (target, key, property) => {
+			console.log('我在获取值');
+			return target[key];
+		},
+		set: (target, key, value, receiver) => {
+			console.log('我在设置值')
+			return target[key] = value
+		}
+	});
+
+	console.log(pro.name);
+	pro.name = 'jishushang';
+	console.log(pro.name);
+
+}
+
+{
+	var pro = new Proxy({
+		ajax: () => {
+			$.ajax({
+				url: this.url,
+				type: 'GET',
+				data: 'dasdasdsads',
+				success: (res) => {
+					console.log(res)
+				}
+			})
+		},
+		url: 'xxxxxxxx'
+	}, {
+		get: (target, key, property) => {
+			// 这里判断 是否跨域
+			console.log(target.url)
+			return target[key];
+		}
+	});
+
+	pro.ajax()
+
+}
