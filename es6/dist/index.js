@@ -549,7 +549,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 }
 
 /*
-* Proxy
+* Proxy  预处理
 * Proxy 可以理解成，在目标对象之前架设一层“拦截”，
 * 外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，
 * 可以对外界的访问进行过滤和改写。
@@ -595,4 +595,175 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 	console.log(pro.name);
 	pro.name = 'jishushang';
 	console.log(pro.name);
+}
+
+/*
+* Promise  的使用
+* 		1、是一个构造函数
+* 			两个参数分别是resolve和reject。
+* 			它们是两个函数，由 JavaScript 引擎提供，不用自己部署。
+*
+*			resolve函数的作用是：
+*				将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），
+*				在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；
+*
+*			reject函数的作用是:
+*			将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），
+*			在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。
+*
+*			Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
+*
+*		2、如果 Promise 状态已经变成resolved，再抛出错误是无效的。
+*			因为 Promise 的状态一旦改变，就永久保持该状态，不会再变了
+*
+*
+* */
+
+{
+	// 实例
+	var time = function time(ms) {
+		return new Promise(function (resolve, reject) {
+			// setTimeout(resolve, ms) // 返回值，是第三个参数
+			resolve('完成了');
+		});
+	};
+
+	;
+	time(3000).then(function (data) {
+		console.log(data);
+	});
+}
+
+/*
+*	，Promise 新建后立即执行，所以首先输出的是Promise。
+*	然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出。
+* */
+
+{
+	var promise = new Promise(function (resolve, reject) {
+		console.log('Promise');
+		return resolve();
+	});
+
+	promise.then(function () {
+		console.log('resolved.');
+	});
+
+	console.log('Hi!');
+}
+/*
+*  Promise 异步加载图片
+* */
+
+{
+	var loadImgAsync = function loadImgAsync(url) {
+		return new Promise(function (resolve, reject) {
+			var img = new Image();
+			img.src = url;
+
+			img.onload = function () {
+				return resolve('图片加载完成了');
+			};
+
+			img.onerror = function () {
+				return reject(new Error('路径错误： ' + url));
+			};
+		});
+	};
+
+	loadImgAsync('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521799004377&di=055c4834a38c034875bf6b59bea7a898&imgtype=0&src=http%3A%2F%2Fi0.sinaimg.cn%2Flx%2F2011%2F0314%2FU5475P622DT20110314161445.jpg').then(function (value) {
+		console.log(value);
+	});
+}
+
+/*
+* Promise   ajax
+* */
+
+{
+	var ajax = function ajax(url) {
+		return new Promise(function (resolve, reject) {
+			// const ajax = new XMLHttpRequest(); // 实例化ajax
+			// ajax.open('GET', url);
+			// ajax.onreadystatechange = ready;
+			// ajax.responseType = 'json'; // 返回的数据类型
+			// // ajax.setRequestHeader('Accept', 'application/json');
+			// ajax.send()
+			//
+			// function ready() {
+			// 	console.log(this)
+			// 	if(this.readyState !== 4) {
+			// 		return
+			// 	} else if(this.status === 200) {
+			// 		resolve(this.response)
+			// 	} else {
+			// 		reject(new Error(this.statusText))
+			// 	}
+			// }
+
+			$.ajax({
+				url: '',
+				method: 'GET',
+				dataType: 'json'
+			});
+		});
+	};
+
+	;
+
+	ajax('package.json').then(function (res) {
+		console.log(res);
+	}, function (err) {
+		console.log(err);
+	});
+}
+
+/*
+* 	.then()  链式调用
+* 		传递两个参数
+* 			1. 返回成功的函数
+* 			2. 返回失败的函数(可选)
+*
+* 	.catch()  捕捉错误信息
+*
+* 	一般来说，不要在then方法里面定义 Reject 状态的回调函数（即then的第二个参数），总是使用catch方法。
+* 如果没有使用catch方法指定错误处理的回调函数，Promise 对象抛出的错误不会传递到外层代码，即不会有任何反应。
+*
+* */
+
+{
+	//  bad  idea
+	new Promise(function (resolve, reject) {
+		return resolve();
+	}).then(function (success) {
+		return console.log(success);
+	}, function (error) {
+		return console.log(error);
+	});
+
+	// good idea
+	new Promise(function (resolve, reject) {
+		return resolve();
+	}).then(function (success) {
+		return console.log(success);
+	}).catch(function (error) {
+		return console.log(error);
+	});
+}
+
+{
+	var someAsyncThing = function someAsyncThing() {
+		return new Promise(function (resolve, reject) {
+			// 下面一行会报错，因为x没有声明
+			resolve(x + 2);
+		});
+	};
+
+	someAsyncThing().then(function () {
+		console.log('everything is great');
+	});
+
+	setTimeout(function () {
+		console.log(123);
+	}, 2000);
 }
