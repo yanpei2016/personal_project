@@ -621,7 +621,13 @@
 			$.ajax({
 				url: '',
 				method: 'GET',
-				dataType: 'json'
+				dataType: 'json',
+				success: (res) => {
+					resolve(res)
+				},
+				error: (err) => {
+					reject(err)
+				}
 			})
 		})
 	};
